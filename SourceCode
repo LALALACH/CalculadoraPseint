@@ -1,0 +1,292 @@
+//Código fuente de Pseint
+SubProceso Op <- CrearMatriz //Este subproceso sólo es para utilizarlo en las opciones 5 y 6 que retorna en valor de Op
+	Definir Op como Real //Definimos una variable local que sólo usaremos para saber la longitud de la matriz que deseamos crear
+	Escribir "Bien, creemos tu matriz para operarla, dime..." //Damos la intrucción a los usuarios
+	Escribir "¿Cuál será la Dimension de tu matriz?" 
+	Leer Op //Leemos la variable
+	Op = Op * Op //Op se multiplica por si misma para hacer una matriz proporcional
+FinSubProceso
+Algoritmo Calculadora
+	Definir Bucle, PrimeraUltimaVezFila, PrimeraUltimaVez Como Logico
+	Definir operacion, LongitudMatriz, VariableControl2, Puesto, VariableLocal Como entero
+	Definir a, b, VariableControl, Resultado, ResultadoMatriz Como Real
+	Definir Conteo Como Entero //Esta es una variable multifuncional, sirve para llevar el conteo de los valores de una matriz y para realizar la pirámide de números primos
+	Dimension PrimeraMatriz[400]  //Definimos una dimensión que endría siendo el array o list en otros lenguajes
+	Dimension SegundaMatriz[400]  //Definimos una dimensión para ser operada con la anterior
+	Bucle <- Verdadero //Establecemos el bucle como verdadero para poder realizar las operaciones que querramos consecutivamente
+	Escribir "HOLA! Bienvenido a mi proyecto Final" // Escribimos la Bienvenida con mis datos
+	Escribir "Alejandro Castillo 7690-24-7312" //Comparto mi carnet
+	Mientras bucle Hacer // Comentamos el bucle para poder usar la calculadora cuantas veces quieras
+		VariableControl <- 0 //Reestablecemos todas las variables que nos apoyarán para operar
+		ResultadoMatriz <- 0
+		conteo <- 0
+		Escribir "¿Qué deseas realizar?" //Desplegamos el menu
+		Escribir "1. Suma"
+		Escribir "2. Resta"
+		Escribir "3. Multiplicación"
+		Escribir "4. División"
+		Escribir "5. Sumar todos los valores de una Matriz"
+		Escribir "6. Restar todos los valores de una Matriz"
+		Escribir "7. Realizar una suma de matrices"
+		Escribir "8. Realizar una resta de matrices"
+		Escribir "9. Crear una triángulo de números primos"
+		Escribir "10. Crear un cuadrado con la porpoción que desees"
+		Leer operacion; //Leer el número de operación que el usaurio desea realizar
+		Segun operacion Hacer //Hacemos un Switch donde validaremos la operación que el usuario quiere hacer
+			1: //La primera es una sima sencilla
+				Escribir "Bien, vamos a sumar dos valores"
+				Escribir "Ingresar el primer valor a operar"
+				Leer a //Ingresamos el primer valor
+				Escribir "Ahora ingresa el segundo valor"
+				leer b //Ingresamos el segundo valor
+				Resultado <- a + b //Calculamos el resulgado
+				Escribir "Bien, el resultado es:", Resultado //Imprimimos el resultado
+			2:
+				Escribir "Bien, vamos a restar dos valores" 
+				Escribir "Ingresar el primer valor a operar"
+				Leer a //Ingresamos primer valor
+				Escribir "Ahora ingresa el segundo valor"
+				leer b //Ingresamos segundo valor
+				Resultado <- a - b //Calculamos
+				Escribir "Bien, el resultado es:", Resultado
+			3:
+				Escribir "Bien, vamos a multiplicar dos valores"
+				Escribir "Ingresar el primer valor a operar"
+				Leer a //Ingresamos primer valor
+				Escribir "Ahora ingresa el segundo valor"
+				leer b //Ingresamos segundo
+				Resultado <- a * b //Calculamos
+				Escribir "Bien, el resultado es:", Resultado
+			4:
+				Escribir "Bien, vamos a dividir dos valores" //Repetimos la misma secuencia, ingresamos dos valores y los dividimos
+				Escribir "Ingresar el primer valor a operar"
+				Leer a
+				Escribir "Ahora ingresa el segundo valor"
+				leer b
+				Resultado <- a / b
+				Escribir "Bien, el resultado es:", Resultado
+			5:
+				LongitudMatriz = CrearMatriz() // En este caso vamos a sumar todos los valores de una matriz
+				Repetir //Entramos al bucle que irá calculando el resultado de cada valor que ingrese el usuario
+					Escribir "Ingresa el valor No.", conteo + 1, " de tu matriz" //Le pedimos al usuario el No. de valor
+					Leer VariableControl //Leemos la variable de control p
+					conteo <- conteo + 1 //aumentamos la variable que termina el bucle 
+					ResultadoMatriz = ResultadoMatriz + VariableControl //Calculamos el resultado
+				Hasta Que conteo >= LongitudMatriz //El bucle se repite hasta que se llegue al número que ingresó el usuario
+				Escribir "Bien, después de esa ardua tarea..."
+				Escribir "El resultado de la suma de todos los valores de tu matriz es:", ResultadoMatriz
+			6:
+				LongitudMatriz = CrearMatriz() //Calculamos longitud de la matriz
+				Repetir
+					Escribir "Ingresa el valor No.", conteo + 1, " de tu matriz" //Pedimos datos
+					Leer VariableControl //Pedimos el valor
+					conteo <- conteo + 1 //aumentamos la variable que termina el bucle 
+					ResultadoMatriz = ResultadoMatriz - VariableControl //Hacemos la resta
+				Hasta Que conteo >= LongitudMatriz //Comprobamos si ya se llegó al último valor que deseó el usuario
+				Escribir "Bien, después de esa ardua tarea..."
+				Escribir "El resultado de la resta de todos los valores de tu matriz es:", ResultadoMatriz
+			7:
+				Escribir "Bien, dime de qué dimensión quieres tus matrices" //Preguntamos al usuario de qué tamaño quiere si matriz
+				Repetir //Realizamos un bucle para asegurarnos que el usuario pueda ingresar un valor de matriz real 
+					Leer conteo //Leemos el valor que quiere
+					si conteo >= 21 Entonces //Si el conteo es mayor a 20
+						Escribir "Intenta de nuevo" //Le avisamos al usuario que el límite de tamaño de la matriz es de 20x20
+						Escribir "Sólo puedes operar como máximo matrices de 20x20"
+					FinSi
+				Hasta Que conteo <= 20 //Si se cumple la condición de que el valor sea menor a 20, avanza el códio
+				a = conteo //Guardamos el valor original que ingresó el usuario para usarlo más tarde
+				conteo <- conteo * conteo //Establecemos que conteo se multiplique por el mismo para hacer la matriz
+				Puesto <- 1 //Puesto va a ser uno porque se va a escribir progresivamente los valores de las matrices
+				Repetir
+					Escribir "Ingresa el valor No. ", Puesto, " de tu primera matriz" //Le pedimos al usuario el valor del puesto x de la matriz
+					Leer PrimeraMatriz[Puesto] //Leemos la primera matriz con referencia a la posición definida por el puesto
+					Puesto = Puesto + 1 //Puesto aumenta uno
+				Hasta Que Puesto - 1 >= conteo //Terminaremos hasta que puesto menos uno sea igual o mayor al conteo, que es el valor de casillas definidas por el usuario
+				Puesto <- 1 //Puesto va a ser uno porque se va a escribir progresivamente los valores de las matrices
+				Repetir
+					Escribir "Ingresa el valor No. ", Puesto, " de tu segunda matriz" //Pedimos valores de la segunda matriz
+					Leer SegundaMatriz[Puesto] //Escribimos sobre el registro determinado por puesto
+					Puesto = Puesto + 1 //Puesto aumenta en 1
+				Hasta Que Puesto - 1 >= conteo //Se repite hasta que se escriban todos los puestos disponibles
+				Escribir "" //Saltamos linea
+				Escribir "Bien, te mostraré cómo quedaría la suma y el resultado" //Mensaje que notifica que posteriormente se imprimirá la operación
+				Escribir "" // Saltamos linea
+				Puesto <- 1//Puesto va a ser uno porque se va a escribir progresivamente los valores de las matrices
+				Repetir //Creamos el primer bucle
+					Repetir//Creamos el segundo
+						Escribir Sin Saltar "  ",PrimeraMatriz[Puesto], "  " //Escribimos puesto a puesto la matriz en las filas
+						Puesto = Puesto + 1
+						VariableControl <- VariableControl + 1
+					Hasta Que VariableControl = a //Hasta que se complete la fila
+					VariableControl <- 0 //Reiniciamos la variable de control para imrprimir la segunda fila de valores
+					Escribir "" //Saltamos linea
+				Hasta Que Puesto >= conteo //Se termina hasta que el puesto sea igual al conteo, que es igual a todos los datos que se ingresaron
+				Escribir ""
+				Escribir "  MÁS (+)" //Imprimimos que es suma
+				Escribir ""
+				Puesto <- 1 //Puesto va a ser uno porque se va a escribir progresivamente los valores de las matrices
+				Repetir //Creamos el mismo bucle que el anterior, pero cambiamos para que se muestre la segunda matriz
+					Repetir
+						Escribir Sin Saltar "  ",SegundaMatriz[Puesto], "  "
+						Puesto = Puesto + 1
+						VariableControl <- VariableControl + 1
+					Hasta Que VariableControl = a
+					VariableControl <- 0
+					Escribir ""
+				Hasta Que Puesto >= conteo //Hasta que se impriman todos los puestos
+				Escribir ""
+				Escribir "ES IGUAL A:" //Escribimos graficamente el IGUAL
+				Escribir ""
+				Puesto <- 1
+				Repetir
+					PrimeraMatriz[Puesto] = PrimeraMatriz[Puesto] + SegundaMatriz[Puesto] //Operamos cada valor de las matrices y lo guardamos en la primera matriz
+					Puesto <- Puesto + 1 //Puesto lo aumentamos en uno para proceder con la siguiente operación
+				Hasta Que Puesto - 1 >= conteo //El bucle termina hasta que se operen todos los puestos
+				Puesto <- 1
+				Repetir //Creamos el primer bucle
+					Repetir //Creamos el segundo bucle
+						Escribir Sin Saltar "  ",PrimeraMatriz[Puesto], "  " //Imprimimos fila a fila la matriz de resultado
+						Puesto = Puesto + 1 //Aumentamos el puesto
+						VariableControl <- VariableControl + 1 //La variable de control aumenta
+					Hasta Que VariableControl = a //Cuando la variable de control llega a A, se termina la fila
+					VariableControl <- 0 //Reiniciamos la variable de control
+					Escribir "" //Saltamos linea
+				Hasta Que Puesto >= conteo //Esperamos a que puesto aumente hasta conteo
+			8:
+				Escribir "Bien, dime de qué dimensión quieres tus matrices"// Ahora se hace la resta
+				Repetir
+					Leer conteo
+					si conteo >= 21 Entonces
+						Escribir "Intenta de nuevo"
+						Escribir "Sólo puedes operar como máximo matrices de 20x20"
+					FinSi
+				Hasta Que conteo <= 20
+				a = conteo 
+				conteo <- conteo * conteo
+				Puesto <- 1
+				Repetir
+					Escribir "Ingresa el valor No. ", Puesto, " de tu primera matriz"
+					Leer PrimeraMatriz[Puesto]
+					Puesto = Puesto + 1
+				Hasta Que Puesto - 1 >= conteo
+				Puesto <- 1
+				Repetir
+					Escribir "Ingresa el valor No. ", Puesto, " de tu segunda matriz"
+					Leer SegundaMatriz[Puesto]
+					Puesto = Puesto + 1
+				Hasta Que Puesto - 1 >= conteo
+				Escribir ""
+				Escribir "Bien, te mostraré cómo quedaría la suma y el resultado"
+				Escribir ""
+				Puesto <- 1
+				Repetir
+					Repetir
+						Escribir Sin Saltar "  ",PrimeraMatriz[Puesto], "  "
+						Puesto = Puesto + 1
+						VariableControl <- VariableControl + 1
+					Hasta Que VariableControl = a
+					VariableControl <- 0
+					Escribir ""
+				Hasta Que Puesto >= conteo
+				Escribir ""
+				Escribir "  MENOS (-)"
+				Escribir ""
+				Puesto <- 1
+				Repetir
+					Repetir
+						Escribir Sin Saltar "  ",SegundaMatriz[Puesto], "  "
+						Puesto = Puesto + 1
+						VariableControl <- VariableControl + 1
+					Hasta Que VariableControl = a
+					VariableControl <- 0
+					Escribir ""
+				Hasta Que Puesto >= conteo
+				Escribir ""
+				Escribir "ES IGUAL A:"
+				Escribir ""
+				Puesto <- 1
+				Repetir
+					PrimeraMatriz[Puesto] = PrimeraMatriz[Puesto] - SegundaMatriz[Puesto] //Lo único diferente es el signo de operación
+					Puesto <- Puesto + 1
+				Hasta Que Puesto - 1 >= conteo
+				Puesto <- 1
+				Repetir
+					Repetir
+						Escribir Sin Saltar "  ",PrimeraMatriz[Puesto], "  "
+						Puesto = Puesto + 1
+						VariableControl <- VariableControl + 1
+					Hasta Que VariableControl = a
+					VariableControl <- 0
+					Escribir ""
+				Hasta Que Puesto >= conteo
+			9:
+				Escribir "Bien, ingresa el número de filas que deseas que tenga el triángulo" //Se le solicita al usuario el número de filas
+				Leer conteo //Se lee el número de filas
+				VariableControl2 = 1 //Establecemos la segunda variable de control como uno, porque esa nos ayudará a llevar el orden de los números
+				Repetir
+					b = 3 + ((VariableControl2 - 1) * 2) //Aquí se establece el valor de B para imprimir números con una simple ecuación
+					// en este caso B va ser igual a 3, se le suma la Variable de control que en este caso es 1  y se le resta  1  que es igual a cero, luego se multiplica por 2
+					//Esto se hace con la finalidad de posteriormente operarlo y que se desplieguen los números de forma descendente
+					Repetir //Entramos a otro bucle
+						Escribir Sin Saltar b - 2," " //Aqui escribimos en una misma linea la operación de b menos 2, en este caso 3 - 2 es 1
+						b = b - 2 //Para b, restamos 2 para que así sea 1
+					Hasta Que b <= 1 //El bucle llega a su fin porque 2 - 1 es mayor o igual a 1
+					Escribir "" //Se pasa a otra linea para ya no continuar en la que generamos
+					VariableControl = VariableControl + 1 //Variable de control se aumenta en uno
+					VariableControl2 = VariableControl2 + 1 //La segunda variable de control aumenta en uno
+				Hasta Que VariableControl >= conteo //Se verifica si la variable de control ya llegó al valor del conteo para terminar la generación del triángulo
+			10: 
+				Escribir "Bien, ahora vamos a generar un cuadrado proporcional" //Escribimos las intrucciones para el usuario
+				Escribir "Ingresa un número entero de cuánto quieres que sea el cuadrado" 
+				Leer  conteo //Leemos la variable conteo
+				PrimeraUltimaVez <- Verdadero //Declaramos como verdadera la variable lógica porque siempre comenzaremos por la primera columa
+				PrimeraUltimaVezFila <- Verdadero //Igual establecemos verdadero porque siempre comenzaremos por la primera fila
+				VariableControl <- 1 //Reestablecemos la variable de control
+				Repetir
+					VariableControl2 <- 1 //Restablecemos la segunda variable de control
+					Repetir //Entramos al bucle que imprime los asteriscos o espacios
+						si VariableControl2 = 1 o VariableControl2 = (conteo) Entonces //Si es la primera vez que se imprime significa que la variable PrimeraUltimaVez se colocará en verdadero
+							PrimeraUltimaVez = Verdadero //Se coloca en verdadero para imprimir el asterisco
+						FinSi 
+						si PrimeraUltimaVez  o PrimeraUltimaVezFila Entonces //Si imprimimos la primera fila o última columa, siempre va asterisco
+							Escribir Sin Saltar "*  " //Escribimos sin saltar y con espacio para hacer que quede bien el formato
+							PrimeraUltimaVez = Falso //La primera vez se pone en falso por ya no seía la primera vez que se imprime algo
+						SiNo
+							Escribir Sin Saltar "   " //En todo caso contrario se imprime un espacio
+						FinSi 
+						VariableControl2 = VariableControl2 + 1 //Aumenta en uno la variable de control para imprimir toda la fila
+					Hasta Que VariableControl2 - 1 >= conteo //Imprimimos hasta que el conteo se acaba para termina de imprimir la fila
+					si PrimeraUltimaVezFila  o VariableControl <= (conteo - 2) Entonces
+						PrimeraUltimaVezFila = Falso // Si primera vez es verdadero, si coloca en falso o si la variable de control es menor al conteo menos dos para imprimir la columna
+					SiNo
+						PrimeraUltimaVezFila = Verdadero //En todo caso contrario se establece verdaderp
+					FinSi
+					Escribir  "" //Se pasa de linea
+					VariableControl = VariableControl + 1 //Se aumenta la variable de control que cuenta las filas imprimidas
+				Hasta Que VariableControl - 1 >= conteo //Todo termina cuando la variable de control llega al numero de filas deseadas
+			De Otro Modo:
+				Escribir "Oh no, ingresaste algo inválido..." //Si ingresas algo inválido, el programa finaliza y pregunta si quieres seguir usando la calculadora
+		Fin Segun
+		Escribir Sin Saltar "------------------------------" //Se imprime una división
+		PrimeraUltimaVez <- Verdadero //Se restablece la variable a Verdadero para repetir el bucle principal
+		Escribir "" //Escribimos un salto de linea
+		Repetir
+			Escribir "¿Quieres seguir operando?" //Preguntamos al usuario qué quiere hacer
+			Escribir "1. Sí"
+			Escribir  "2. No"
+			Leer operacion //leemos la opción
+			Segun operacion Hacer //Validamos qué haremos
+				1:
+					Bucle <- Verdadero  //En el caso uno 
+					PrimeraUltimaVez <- Falso
+				2:
+					Bucle <- Falso //Si elige que no el bucle termina
+					PrimeraUltimaVez <- Falso
+				De Otro Modo:
+					Escribir "Por favor, ingresa algo válido, intenta de nuevo..." //De otro modo pide una respuesta válida
+			Fin Segun //Termina el switch
+		Hasta Que PrimeraUltimaVez = Falso //Termina el bucle
+		Escribir "¡Adiós, nos vemos de nuevo!"	 //Se despide
+	Fin Mientras
+FinAlgoritmo
+
