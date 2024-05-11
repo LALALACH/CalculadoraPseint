@@ -35,6 +35,7 @@ Escribir "Bien, ingresa el número de filas que deseas que tenga el triángulo"
 Otro algoritmo bastante bonito y bien abordado, es el algoritmo para generar cuadros según la necesidad del usuario.
 
 Adjunto imagen de ejemplo:
+
 ![Iamgen3](images/image3.png)
 
 En este caso generamos un cuadro de 20x20
