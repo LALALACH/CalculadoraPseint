@@ -1,4 +1,4 @@
 # CalculadoraPseint
-Este es mi primer proyecto de  Pseint que tengo en la universidad UMG
+Este es fue mi primer proyecto de Pseint por parte de la universidad.
 
-Carnet: **7690-24-8312**
+**Usarlo como mejor les sirva.**
